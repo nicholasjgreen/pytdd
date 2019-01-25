@@ -3,4 +3,4 @@ class MyRepo():
         pass
 
     def get_data(self):
-        return list(range(5))
+        return list(range(4))
