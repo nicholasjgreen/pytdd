@@ -1,7 +1,6 @@
 from unittest import TestCase
 from unittest.mock import MagicMock
 from unittest.mock import patch
-from src.MyRepo import *
 from src.MyObj import *
 
 
@@ -16,7 +15,7 @@ class TestMyObj(TestCase):
         # Mock in my own values, this means we control the input from inside the test
         # It is a monkey patch on the method, which is a bit gross
         repo.get_data = MagicMock(return_value=[10, 20, 30])
-        self.assertEqual(0, obj.add_from_repo())
+        self.assertEqual(60, obj.add_from_repo())
 
     @patch('src.MyRepo.MyRepo')
     def test_add_from_repo_with_patching(self, mock_repo):
@@ -36,8 +35,8 @@ class TestMyObj(TestCase):
 
             # We can pass this into constructors
             obj = MyObj(repo)
-            self.assertEqual(0, obj.add_from_repo())
+            self.assertEqual(60, obj.add_from_repo())
 
             # Also works when something else (within this context) creates a repo
             obj = MyObj()   # When None is passed into constructor it will create its own MyRepo
-            self.assertEqual(0, obj.add_from_repo())
+            self.assertEqual(60, obj.add_from_repo())
